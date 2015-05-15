@@ -1,5 +1,6 @@
 package com.app.school.service;
 
+import com.app.school.dto.SchoolDTO;
 import com.app.school.entity.School;
 import com.app.school.exception.SchoolNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,8 @@ import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
-import com.app.school.dto.SchoolDTO;
-
-import javax.lang.model.UnknownEntityException;
-
 @Service
-final class MongoDBSchoolService implements  SchoolService{
-
+final class MongoDBSchoolService implements SchoolService {
 
     private final SchoolRepository repository;
 
@@ -27,7 +23,7 @@ final class MongoDBSchoolService implements  SchoolService{
 
     @Override
     public SchoolDTO create(SchoolDTO todo) {
-        School persisted = new School(todo.getEmailDomain(),todo.getAddress(),todo.getCode(),todo.getName());
+        School persisted = new School(todo.getEmailDomain(), todo.getAddress(), todo.getCode(), todo.getName());
         persisted = repository.save(persisted);
         return convertToDTO(persisted);
     }
@@ -65,9 +61,9 @@ final class MongoDBSchoolService implements  SchoolService{
         return convertToDTO(updated);
     }
 
-    private School findSchoolById(String id){
+    private School findSchoolById(String id) {
         Optional<School> result = repository.findOne(id);
-        return result.orElseThrow(()-> new SchoolNotFoundException(id));
+        return result.orElseThrow(() -> new SchoolNotFoundException(id));
     }
 
     private List<SchoolDTO> convertToDTOs(List<School> schools) {

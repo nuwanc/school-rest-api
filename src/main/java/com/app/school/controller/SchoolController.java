@@ -5,13 +5,7 @@ import com.app.school.exception.SchoolNotFoundException;
 import com.app.school.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +15,7 @@ final class SchoolController {
     private final SchoolService service;
 
     @Autowired
-    SchoolController(SchoolService service){
+    SchoolController(SchoolService service) {
         this.service = service;
     }
 
