@@ -14,10 +14,10 @@ import static java.util.stream.Collectors.toList;
 @Service
 final class MongoDBSchoolService implements SchoolService {
 
-    private final SchoolRepository repository;
+    private final SchoolMongoRepository repository;
 
     @Autowired
-    MongoDBSchoolService(SchoolRepository repository) {
+    MongoDBSchoolService(SchoolMongoRepository repository) {
         this.repository = repository;
     }
 
@@ -62,7 +62,7 @@ final class MongoDBSchoolService implements SchoolService {
     }
 
     private School findSchoolById(String id) {
-        Optional<School> result = repository.findOne(id);
+        Optional<School> result = repository.findById(id);
         return result.orElseThrow(() -> new SchoolNotFoundException(id));
     }
 
